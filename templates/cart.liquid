@@ -1,0 +1,13 @@
+<h3>Basket Content</h3>
+
+<div>
+  <ul>
+    {% for item in cart.items %}
+      <li>
+        <img src = "{{ item.image | image_url: width: 200}}">
+        <p>{{ item.title }}</p>
+        <p>{{ item.price }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

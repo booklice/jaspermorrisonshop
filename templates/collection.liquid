@@ -1,0 +1,12 @@
+<h1>{{  collection.title }}</h1>
+<ul class="items-ul">
+  {% for product in collection.products %}
+  <li>
+      <a href="{{ product.url }}">
+          <span class="image" style = "background-image:url('{{ product.featured_image | image_url }}')">
+          </span>
+          <span class="name">{{ product.title }}</span>
+      </a>
+  </li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,21 @@
+{{ 'product.css' | asset_url  | stylesheet_tag}}
+
+{% capture currencyString %}{{ shop.money_format }}{% endcapture %}
+{% assign tempArray = currencyString | split: '{' %}
+{% assign currencySymbol = tempArray.first %}
+
+<div class="product-container">
+  <div class= "left">
+    <h3>{{  product.title }}</h3>
+    <p>{{ product.description }}</p>
+    <p>{{ currencySymbol }} {{ product.price }} </p>
+    <p>{{ product.variants.first.inventory_quantity }} available</p>
+    {%  form 'product', product %}
+      <input name="id" value="{{ product.variants.first.id }}" type="hidden" />
+      <input name="add" value="ORDER NOW" type="submit" />    {% endform %}
+  </div>
+  <div class="right">
+    <img src = "{{ product.featured_image | image_url }}" width ="300px" />
+  </div>
+</div>
+<a title="Back to Categories" class="u-text--titles" href="javascript:history.back()">Back</a>

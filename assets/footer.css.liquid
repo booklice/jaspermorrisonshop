@@ -1,0 +1,36 @@
+footer {
+  grid-area: footer;
+  border-top: 1px solid grey;
+}
+
+footer p {
+  margin: 0;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-container .left .bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-container .right {
+  display: flex;
+  flex-direction: column;
+  justify-self: end;
+  text-align: right;
+}
+
+.footer-container .right ul {
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+}
+
+.footer-container .right li::after {
+  content: "|";
+  margin: 0 0 0 0.5rem;
+}
