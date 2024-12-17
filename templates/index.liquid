@@ -1,19 +1,40 @@
+<div class="news">
+    <div class="left">
+        <p class="top">
+            <span>24b Kingsland Road</span><br />
+            <span>London E2 8DA</span>
+        </p>
+        <div class="down">
+            <h3>Object Lessons</h3>
+            <p>Come and visit our exhibition.</p>
+        </div>
+    </div>
+    <div class="right">
+        <img src = '{{  "main.webp" | asset_url }}' />
+    </div>
+</div>
 <ul class="items-ul">
-  <li>
-      <a href="/collections/all">
-          <span class="image" style = "background-image:url('{{ "all.webp" | asset_url }}')">
-          </span>
-          <span class="name">All Products</span>
-      </a>
-  </li>
-  {% for collection in collections %}
-  {%- assign first_product = collection.products | first -%}
-  <li>
-      <a href="{{ collection.url }}">
-          <span class="image" style = "background-image:url('{{ first_product.featured_image | image_url }}')">
-          </span>
-          <span class="name">{{ collection.title }}</span>
-      </a>
-  </li>
-  {% endfor %}
+    <li>
+        <a href="/collections/all">
+            <div class="image-title-container">
+              <img class="image" src = '{{ "all.webp" | asset_url }}' />
+              <div class="title-wrapper">
+                <h3 class="title">All Products</h3>
+              </div>
+            </div>
+          </a>
+    </li>
+    {% for collection in collections %}
+    {%- assign first_product = collection.products | first -%}
+    <li>
+        <a href="{{ collection.url }}">
+          <div class="image-title-container">
+            <img class="image" src = '{{ first_product.featured_image | image_url }}' />
+            <div class="title-wrapper">
+              <h3 class="title">{{ collection.title }}</h3>
+            </div>
+          </div>
+        </a>
+      </li>
+    {% endfor %}
 </ul>

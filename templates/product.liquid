@@ -6,16 +6,75 @@
 
 <div class="product-container">
   <div class= "left">
-    <h3>{{  product.title }}</h3>
-    <p>{{ product.description }}</p>
-    <p>{{ currencySymbol }} {{ product.price }} </p>
-    <p>{{ product.variants.first.inventory_quantity }} available</p>
     {%  form 'product', product %}
+    <h3 class="product-title">{{  product.title }}</h3>
+    <span class="product-description">{{ product.description }}</span>
+    <div class="available-price">
+      <div>
+        <span class="available">{{ product.variants.first.inventory_quantity }} available</span>
+      </div>
+      <div>
+        <span>{{ currencySymbol }} {{ product.price }}</span>
+        <form id="product-form" class="quickAdd">
+          <label class="button-wrapper">
+            <svg class="add-button" width="14.941" height="14.862" viewBox="0 0 14.941 14.862">
+              <circle fill="none" stroke="#BFBDBD" stroke-miterlimit="10" cx="7.477" cy="7.4" r="6.874"></circle>
+              <path fill="#BFBDBD" d="M11.53 6.815H8.063V3.4H6.895v3.415h-3.47v1.167h3.47v3.524h1.167V7.982h3.47"></path>
+            </svg>
+            <input type="submit" class="submit buyNowButton" value="Add to Cart" style="display: none;">
+          </label>
+          <input name="id" value="{{ product.variants.first.id }}" type="hidden" />
+        </form>
+      </div>
+    </div>
       <input name="id" value="{{ product.variants.first.id }}" type="hidden" />
-      <input name="add" value="ORDER NOW" type="submit" />    {% endform %}
+    {% endform %}
   </div>
   <div class="right">
-    <img src = "{{ product.featured_image | image_url }}" width ="300px" />
+    <img src = "{{ product.featured_image | image_url }}" width ="300px"/>
   </div>
 </div>
-<a title="Back to Categories" class="u-text--titles" href="javascript:history.back()">Back</a>
+<div class="back-pagination-container">
+  <div class="back-button">
+    <a title="Back" href="/">Back</a>
+  </div>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const quickAdd = document.querySelector(".quickAdd");
+  
+    const addCart = async () => {
+      console.log("addCart");
+  
+      let formData = {
+        'items': [{
+          'id': document.querySelector('input[name="id"]').value,
+          'quantity': 1
+        }]
+      };
+  
+      await fetch(window.Shopify.routes.root + 'cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+        alert("Product added to cart!");
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    };
+  
+    quickAdd.addEventListener("submit", (e) => {
+      e.preventDefault(); // 폼 기본 동작 방지
+      console.log("submitted")
+      addCart();
+    });
+  });
+  
+</script>

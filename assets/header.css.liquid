@@ -15,28 +15,90 @@ header {
 header .right {
   display: flex;
   height: 100%;
-  justify-content: center;
+  justify-content: right;
   align-items: center;
   gap: 0.75em;
+  width: 70%;
 }
 
-.cart,
-.search {
+.search-submit {
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.search-button[type="submit"] {
+  background-color: none;
+}
+
+.search-button {
   width: 40px;
   height: 40px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+  background-color: transparent;
+}
+
+.search-form {
+  display: none;
+  font-size: 0.8em;
+  height: 40px;
+  display: none;
+  position: relative;
+  border: 0;
+  margin-bottom: 0px;
+  height: 40px;
+  bottom: -1px;
+}
+
+.search-form.active {
+  position: relative;
+  display: flex;
+  border: solid 1px darkgray;
+  justify-content: space-between;
+  padding: 0 0.5em 0 0.5em;
+}
+
+.search-form.active .search-submit {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.search-input {
+  width: 300px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.search-submit {
+  background-color: transparent;
+}
+
+.search-input.clicked {
+  height: 100%;
 }
 
 .cart {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  width: 42px;
+  height: 42px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
-.count {
+.cart .count {
   color: white;
-  font-size: 1.3rem;
+  padding-top: 0.4em;
+  font-size: 1.2rem;
   font-weight: 600;
 }

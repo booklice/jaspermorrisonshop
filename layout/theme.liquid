@@ -7,10 +7,10 @@
     <div class="container">
       {% render 'header' %} 
       <main>
-        {{ content_for_layout}}
+        {{ content_for_layout }}
       </main>
       {% render 'footer' %}
     </div>
-    </body>
+  </body>
   {{ 'scripts.js' | asset_url  | script_tag }}
 </html>

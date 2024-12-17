@@ -1,0 +1,24 @@
+{%- assign query_key= 'q' -%}
+{%- capture query_value -%}
+  {%- render 'get-url-query', query_key: query_key' -%}
+{%- endcapture -%}
+{%- assign query_value = query_value | strip_newlines | strip -%}
+
+<div class="search-container">
+  {% if search.results_count == 0 %}
+    <h2>No results found for "{{ query_value }}"</h2>
+  {% else %}
+    <h2>Search results for "{{ query_value }}"</h2>
+  {% endif %}   
+  <ul class="items-ul">
+  {% for item in search.results %}
+  <li>
+    <a href="{{ item.url }}">
+      <div class="image-title-container">
+        <img class="image" src = '{{ item.featured_image | image_url }}' title = '{{ item.title }}' />
+      </div>
+    </a>
+  </li>
+  {% endfor %}
+  </ul>
+</div>

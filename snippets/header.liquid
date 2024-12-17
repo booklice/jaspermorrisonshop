@@ -4,9 +4,14 @@
     
   </div>
   <div class="right">
-    <div class="search" style = "background-image:url('{{ "search.svg" | asset_url }}')"></div>
+    <form class="search-form" action="/search" method="get">
+      <input class="search-input" type="search" placeholder="search" name="q">
+      <input class="search-submit" type="submit" value="" style="background-image:url('{{ "arrow-right.svg" | asset_url }}')">
+    </form>
+    <div class="search-button" value="" style = "background-image:url('{{ "search.svg" | asset_url }}')">
+    </div>
     <div class="cart" style = "background-image:url('{{ "cart.svg" | asset_url }}')">
-      <span class="count">0</span>
+      <p class="count">{{ cart.item_count }}</p>
     </div>
   </div>
 </header>
@@ -14,6 +19,17 @@
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const logo = document.querySelector(".logo");
+    const cart = document.querySelector(".cart");
+    const searchButton = document.querySelector(".search-button");
+    const searchForm = document.querySelector(".search-form");
+
+    searchButton.addEventListener("click", () => {
+      searchForm.classList.toggle("active")
+    })
+
+    cart.addEventListener("click", () => {
+      window.location = "/cart";
+    })
 
     logo.addEventListener("click", () => {
       window.location = '/';

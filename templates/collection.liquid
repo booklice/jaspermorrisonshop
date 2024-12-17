@@ -1,12 +1,22 @@
-<h1>{{  collection.title }}</h1>
+<h2>{{  collection.title }}</h2>
 <ul class="items-ul">
   {% for product in collection.products %}
   <li>
-      <a href="{{ product.url }}">
-          <span class="image" style = "background-image:url('{{ product.featured_image | image_url }}')">
-          </span>
-          <span class="name">{{ product.title }}</span>
-      </a>
+    <a href="{{ product.url }}">
+      <div class="image-title-container">
+        <img class="image" src = '{{ product.featured_image | image_url }}' />
+      </div>
+    </a>
   </li>
   {% endfor %}
 </ul>
+<div class="back-pagination-container">
+  <div class="back-button">
+    <a title="Back" href="/">Back</a>
+  </div>
+  <div class="pagination-controls">
+    {% paginate collection.products by 30 %}
+      {{- paginate | default_pagination -}}
+    {% endpaginate %}
+  </div>
+</div>

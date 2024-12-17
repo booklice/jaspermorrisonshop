@@ -1,6 +1,8 @@
 footer {
   grid-area: footer;
   border-top: 1px solid grey;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 footer p {
@@ -10,9 +12,18 @@ footer p {
 .footer-container {
   display: flex;
   justify-content: space-between;
+  padding-top: 1em;
+  margin-bottom: 2.5em;
 }
 
-.footer-container .left .bottom {
+.left {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  gap: 4px;
+}
+
+.footer-container .left p {
   display: flex;
   justify-content: space-between;
 }
@@ -22,6 +33,12 @@ footer p {
   flex-direction: column;
   justify-self: end;
   text-align: right;
+  gap: 4px;
+}
+
+.footer-container .left p:first-child,
+.footer-container .right p:first-child {
+  margin-bottom: 7px;
 }
 
 .footer-container .right ul {

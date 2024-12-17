@@ -1,6 +1,64 @@
 .product-container {
+  display: grid;
+  grid-template-columns: 300px calc(100% - 300px);
+  min-height: 500px;
+}
+
+.product-description {
+  margin-top: 1.25em;
+  margin-bottom: 0;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.left {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: end;
+}
+
+.available-price {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+}
+
+.available {
+  font-size: 0.8em;
+}
+
+.available-price .add-input {
+  width: 100%;
+  height: 100%;
+}
+
+.available-price div {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  min-height: 700px;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-container .right {
+  display: flex;
+  justify-content: end;
+}
+
+.add-button {
+  width: 2em;
+  height: 2em;
+  text-align: center;
+  line-height: 0.75em;
+  margin-left: 0.5em;
+  cursor: pointer;
+}
+
+.product-container .right img {
+  width: 90%;
+}
+
+.product-container {
+  margin-bottom: 2rem;
 }

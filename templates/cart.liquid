@@ -1,13 +1,56 @@
-<h3>Basket Content</h3>
+{%  form 'cart', cart %}
 
-<div>
+{{ 'cart.css' | asset_url  | stylesheet_tag}}
+<h2>Basket Content</h2>
+
+<div class="cart-container">
+  <div class="left">
   <ul>
+    {% assign subtotal = 0 %}
     {% for item in cart.items %}
       <li>
-        <img src = "{{ item.image | image_url: width: 200}}">
-        <p>{{ item.title }}</p>
-        <p>{{ item.price }}</p>
+        <div class="li-left">
+          <a href="{{ item.url }}">
+            <img src="{{ item.image | image_url: width: 200 }}">
+          </a>
+        </div>
+        <div class="li-right">
+          <h2>{{ item.title }}</h2>
+          <div class="quantity-price">
+            <span>
+              <input name = "updates[]" value="{{ item.quantity }}">
+            </span>
+            <span clas="x">x</span>
+            <span>{{ item.price | money }}</span>
+          </div>
+          <button type ="submit" name = "update">
+            Update
+          </button>
+          {% assign subtotal = subtotal | plus: item.price %}  
+        </div>
       </li>
     {% endfor %}
+
   </ul>
+  </div>
+  <div class="right">
+    <h2>Subtotal</h2>
+    <span class="subtotal-price">{{ subtotal | money }}</span>
+    <span class="note">
+      Not including shipping
+    </span>
+    <button class="checkout-button" type="submit" name="checkout">
+      Checkout
+    </button>
+    <p>
+      <b><i>Due to Brexit, orders to the EU are now liable to a VAT charge upon arrival. We apologise for this.</i></b>
+    </p>
+  </div>
 </div>
+<div class="back-pagination-container">
+  <div class="back-button">
+    <a title="Back" href="/">Back</a>
+  </div>
+</div>
+
+{% endform %}
